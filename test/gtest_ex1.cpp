@@ -58,7 +58,6 @@ TEST(SutTest, do_not_UseMock)
     ASSERT_TRUE(res);
 }
 
-
 int main(int argc, char **argv)
 {
     ::testing::InitGoogleTest(&argc, argv);

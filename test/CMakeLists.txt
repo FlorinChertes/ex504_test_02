@@ -39,6 +39,8 @@ ENDIF()
 list(REMOVE_ITEM PROD_SRC ${CMAKE_SOURCE_DIR}/src/main.cpp)
 
 create_test(gtest_ex1) 
+target_sources(gtest_ex1 PRIVATE gtest_ex1_1.cpp)
+
 create_test(gtest_ex2) 
 create_test(gtest_ex3) 
 
