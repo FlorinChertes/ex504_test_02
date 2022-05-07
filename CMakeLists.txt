@@ -45,7 +45,15 @@ if (USE_GOOGLE_TEST)
     include(GoogleTest)
 endif ()
 
-file (GLOB_RECURSE PROD_SRC ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
+file (GLOB_RECURSE PROD_SRC
+	src/main.cpp
+
+	include/sut.h
+	src/sut.cpp
+
+	include/doc.h
+	)
+
 add_executable(${PROJECT_NAME} ${PROD_SRC})
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)

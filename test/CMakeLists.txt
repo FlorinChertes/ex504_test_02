@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.18)
 
 IF (MSVC)
     function(create_test name)
-        add_executable(${name} ${name}.cpp ${PROD_SRC})
+        add_executable(${name} ${name}.cpp g_test_main.cpp ${PROD_SRC})
         target_include_directories(${name} PRIVATE ${CMAKE_SOURCE_DIR}/include)
         target_link_libraries(${name} PRIVATE gtest gmock )
 
@@ -39,7 +39,10 @@ ENDIF()
 list(REMOVE_ITEM PROD_SRC ${CMAKE_SOURCE_DIR}/src/main.cpp)
 
 create_test(gtest_ex1) 
-target_sources(gtest_ex1 PRIVATE gtest_ex1_1.cpp)
+target_sources(gtest_ex1 PRIVATE
+	gtest_ex1_1.cpp
+	gtest_ex1_2.cpp
+	)
 
 create_test(gtest_ex2) 
 create_test(gtest_ex3) 

@@ -82,7 +82,7 @@ static int d3[]{ 4,5,6 };
 static std::vector<int*> data{d1,d2,d3};
 
 
-INSTANTIATE_TEST_SUITE_P(StackTestData,StackTestP, ::testing::ValuesIn(data));
+INSTANTIATE_TEST_SUITE_P(StackTestData, StackTestP, ::testing::ValuesIn(data));
 
 TEST_P(StackTestP, Size)
 {
