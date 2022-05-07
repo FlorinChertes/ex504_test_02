@@ -25,7 +25,7 @@ ELSE()
     endif()
 
     function(create_test name)
-        add_executable(${name} ${name}.cpp ${PROD_SRC})
+        add_executable(${name} ${name}.cpp g_test_main.cpp ${PROD_SRC})
         target_include_directories(${name} PRIVATE ${CMAKE_SOURCE_DIR}/include)
         target_link_libraries(${name} PRIVATE GTest::gtest GTest::gmock )
         set_target_properties(${name} PROPERTIES 
