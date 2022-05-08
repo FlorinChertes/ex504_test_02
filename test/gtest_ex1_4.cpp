@@ -6,52 +6,53 @@
 #include <iostream>
 #include <string>
 
-template<typename T>
-class MockDOC_t : public DOC_t<T> {
+class MockDOC_f {
 public:
+    MOCK_METHOD(std::string, foo, ());
+    MOCK_METHOD(int, bar, ());
+};
 
-    MOCK_METHOD(std::string, foo, (T param), (override));    
-    MOCK_METHOD(int, bar, (T param), (override));
-};   
-
-TEST(SutTest_t, UseMock)
+TEST(SutTest_f, UseMock)
 {
     // Arange
-    MockDOC_t<int> mock_doc;
-    SUT_t sut(mock_doc);
+    MockDOC_f mock_doc;
+    SUT_f<MockDOC_f> mock_sut(mock_doc);
 
     // Expect
-    EXPECT_CALL(mock_doc, foo(::testing::_))
+    EXPECT_CALL(mock_doc, foo())
         .Times(::testing::AtLeast(1))
         .WillRepeatedly(::testing::Return("from google 'foo' was called"));
-    EXPECT_CALL(mock_doc, bar(::testing::_))
+    EXPECT_CALL(mock_doc, bar())
         .Times(::testing::AtLeast(1))
         .WillRepeatedly(::testing::Return(154));
 
     // Act
     bool res{true};
-    res = sut.foo(true,true);
+    res = mock_sut.foo(true,true);
     if (res == true)
     {
-        res = sut.bar(true,true);
+        res = mock_sut.bar(true,true);
     }
-
     // Assert
     ASSERT_TRUE(res);
 }
 
-TEST(SutTest_t, do_not_UseMock)
+TEST(SutTest_f, do_not_UseMock)
 {
-    DOC_t<int> doc;
-    SUT_t sut(doc);
+    // Arange
+    DOC_f doc;
+    SUT_f<DOC_f> sut(doc);
 
+    // Act
     bool res{ true };
+
     res = sut.foo(true, true);
     if (res == true)
     {
         res = sut.bar(true, true);
     }
-
     // Assert
     ASSERT_TRUE(res);
 }
+
+

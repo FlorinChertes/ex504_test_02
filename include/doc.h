@@ -37,4 +37,23 @@ public:
     }
 };
 
+//-----------------------------------------------------------------------------
+
+class DOC_f {
+public:
+
+    std::string foo()
+    {
+        std::cout << "Hello world!" << std::endl;
+        return "Hello world!";
+    }
+
+    int bar()
+    {
+        std::cout << 153 << std::endl;
+        return 153;
+    }
+};
+
+
 #endif
