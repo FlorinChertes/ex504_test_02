@@ -64,6 +64,32 @@ private:
     T& doc_;
 };
 
+//-----------------------------------------------------------------------------
+template<typename T>
+class SUT_ipc {
+
+public:
+
+    SUT_ipc(T& ipc) : ipc_(ipc) {}
+
+    int foo()
+    {
+        using Handler = std::function<int(int)>;
+
+        std::string uri{ "uri" };
+        int param{153};
+        Handler handler{ [](int param) -> int {
+            std::cout << "call handler from SUT foo value: " << param  << std::endl;
+            return param; } };
+
+        std::cout << "before call to callOneReply" << std::endl;
+        return ipc_.callOneReply(uri, param, handler);
+    }
+
+private:
+    T& ipc_;
+};
+
 
 #endif
 

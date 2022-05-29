@@ -44,6 +44,7 @@ target_sources(gtest_ex1 PRIVATE
 	gtest_ex1_2.cpp
 	gtest_ex1_3.cpp
 	gtest_ex1_4.cpp
+	gtest_ex1_5.cpp
 	)
 
 create_test(gtest_ex2) 
